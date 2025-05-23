@@ -2,9 +2,11 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import java.time.Duration;
 
 public class AddCarModal {
@@ -22,19 +24,20 @@ public class AddCarModal {
     }
 
     public void selectBrand(String brand) {
-        new Select(driver.findElement(brandDropdown)).selectByVisibleText(brand);
+        WebElement brandSelect = wait.until(ExpectedConditions.elementToBeClickable(brandDropdown));
+        new Select(brandSelect).selectByVisibleText(brand);
     }
 
     public void selectModel(String model) {
-        new Select(driver.findElement(modelDropdown)).selectByVisibleText(model);
+        WebElement modelSelect = wait.until(ExpectedConditions.elementToBeClickable(modelDropdown));
+        new Select(modelSelect).selectByVisibleText(model);
     }
 
     public void setMileage(String mileage) {
-        driver.findElement(mileageInput).sendKeys(mileage);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(mileageInput)).sendKeys(mileage);
     }
 
     public void clickAdd() {
-        wait.until(ExpectedConditions.elementToBeClickable(addButton));
-        driver.findElement(addButton).click();
+        wait.until(ExpectedConditions.elementToBeClickable(addButton)).click();
     }
 }
