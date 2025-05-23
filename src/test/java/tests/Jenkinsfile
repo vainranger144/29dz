@@ -28,7 +28,7 @@ pipeline {
     }
     failure {
       mail to: 'dev-team@example.com',
-           subject: "Сборка упала: ${currentBuild.fullDisplayName}",
+           subject: "Сборка упалаа: ${currentBuild.fullDisplayName}",
            body: "Ссылка: ${env.BUILD_URL}"
     }
   }
