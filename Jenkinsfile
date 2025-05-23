@@ -1,8 +1,8 @@
 pipeline {
   agent any
   tools {
-    jdk 'OpenJDK 11'
-    maven 'Maven 3.8'
+    jdk 'jdk21'
+    maven 'Maven'
   }
   stages {
     stage('Checkout') {
@@ -28,7 +28,7 @@ pipeline {
     }
     failure {
       mail to: 'dev-team@example.com',
-           subject: "Сборка упалаа: ${currentBuild.fullDisplayName}",
+           subject: "Сборка упала: ${currentBuild.fullDisplayName}",
            body: "Ссылка: ${env.BUILD_URL}"
     }
   }
