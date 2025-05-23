@@ -3,9 +3,13 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import java.time.Duration;
 
 public class AddCarModal {
     private WebDriver driver;
+    private WebDriverWait wait;
 
     private final By brandDropdown = By.id("addCarBrand");
     private final By modelDropdown = By.id("addCarModel");
@@ -14,6 +18,7 @@ public class AddCarModal {
 
     public AddCarModal(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public void selectBrand(String brand) {
@@ -29,6 +34,7 @@ public class AddCarModal {
     }
 
     public void clickAdd() {
+        wait.until(ExpectedConditions.elementToBeClickable(addButton));
         driver.findElement(addButton).click();
     }
 }
